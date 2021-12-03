@@ -1,5 +1,7 @@
 <template>
-    <div class="shadow-md bg-dark-blue">
+    <div
+        class="fixed top-0 z-50 w-full bg-opacity-75 shadow-md bg-dark-blue backdrop-filter backdrop-blur-md"
+    >
         <div class="shadow-md">
             <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="relative flex items-center justify-between h-16">

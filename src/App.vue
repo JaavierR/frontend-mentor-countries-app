@@ -1,4 +1,4 @@
 <template>
     <TheNavbar />
-    <RouterView />
+    <RouterView class="mt-16" />
 </template>
