@@ -5,9 +5,11 @@ import {
     RouteRecordRaw,
 } from 'vue-router'
 
+import NProgress from 'nprogress'
+
 const routes: Array<RouteRecordRaw> = [
     {
-        path: '',
+        path: '/',
         name: 'DefaultLayout',
         component: () => import('@/layouts/LayoutDefault.vue'),
         children: [
@@ -23,6 +25,13 @@ const routes: Array<RouteRecordRaw> = [
 const router: Router = createRouter({
     history: createWebHistory(),
     routes,
+})
+
+router.beforeEach(() => {
+    NProgress.start()
+})
+router.afterEach(() => {
+    NProgress.done()
 })
 
 export default router
