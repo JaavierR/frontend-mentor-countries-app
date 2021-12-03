@@ -12,11 +12,11 @@ const toggleLocales = () => {
 
 <template>
     <div class="p-4 text-lg">
+        <router-link :to="{ name: 'About' }">About</router-link>
         <div class="font-bold">
             {{ t('button.home') }}
         </div>
         <div>{{ country.country }}</div>
-        <HelloWorld />
         <a
             class="px-2 text-red-500 bg-red-100 rounded-md cursor-pointer"
             :title="t('button.toggle_langs')"
