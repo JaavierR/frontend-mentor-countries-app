@@ -1,28 +1,24 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { useCountryStore } from '@/stores/country'
 
-const country = useCountryStore()
-const { t, availableLocales, locale } = useI18n()
+const useCountry = useCountryStore()
+const { countries } = storeToRefs(useCountry)
 
-const toggleLocales = () => {
-    const locales = availableLocales
-    locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
-}
+useCountry.fetchCountries()
 </script>
 
 <template>
-    <div class="p-4 text-lg">
-        <router-link :to="{ name: 'About' }">About</router-link>
-        <div class="font-bold">
-            {{ t('button.home') }}
-        </div>
-        <div>{{ country.country }}</div>
-        <a
-            class="px-2 text-red-500 bg-red-100 rounded-md cursor-pointer"
-            :title="t('button.toggle_langs')"
-            @click.prevent="toggleLocales"
+    <div
+        v-if="countries.length"
+        class="grid grid-cols-1 gap-16 p-4 text-lg sm:grid-cols-4"
+    >
+        <div
+            v-for="country in countries"
+            :key="country.name.common"
+            class="sm:col-span-2 lg:col-span-1"
         >
-            {{ t('button.toggle_langs') }}
-        </a>
+            <AppCard :country="country" />
+        </div>
     </div>
 </template>

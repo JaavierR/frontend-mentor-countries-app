@@ -1,9 +1,27 @@
 import { defineStore } from 'pinia'
+import apiCountry from '@/services/Country'
+import Country from '@/types/Country'
 
-export const useCountryStore = defineStore('country', () => {
-    const country = ref<string>('Chile')
+interface State {
+    countries: Country[]
+}
 
-    return {
-        country,
-    }
+export const useCountryStore = defineStore('country', {
+    state: (): State => ({
+        countries: [],
+    }),
+    actions: {
+        async fetchCountries(): Promise<void> {
+            const { data } = await apiCountry.fetchCountries()
+            this.countries = data
+        },
+    },
+    getters: {
+        getCountryById: (state) => {
+            return (countryName: string) =>
+                state.countries.find(
+                    (country: Country) => country.name.common === countryName
+                )
+        },
+    },
 })
