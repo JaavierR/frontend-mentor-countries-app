@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { teal } = require('tailwindcss/colors')
+const { fontFamily } = require('tailwindcss/defaultTheme')
 
 module.exports = {
     mode: 'jit',
@@ -9,6 +10,11 @@ module.exports = {
         extend: {
             colors: {
                 teal,
+                'very-dark-blue': 'hsl(207, 26%, 17%)',
+                'dark-blue': 'hsl(209, 23%, 22%)',
+            },
+            fontFamily: {
+                sans: ['Nunito Sans', ...fontFamily.sans],
             },
         },
     },

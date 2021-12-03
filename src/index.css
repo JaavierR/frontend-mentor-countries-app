@@ -17,6 +17,7 @@
     html,
     body,
     #app {
+        @apply text-white bg-very-dark-blue;
         height: 100%;
         margin: 0;
         padding: 0;
