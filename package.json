@@ -9,6 +9,7 @@
         "format": "prettier .  --write"
     },
     "dependencies": {
+        "axios": "^0.24.0",
         "nprogress": "^0.2.0",
         "pinia": "^2.0.5",
         "vue": "^3.2.23",
