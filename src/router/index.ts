@@ -7,9 +7,16 @@ import {
 
 const routes: Array<RouteRecordRaw> = [
     {
-        path: '/',
-        name: 'Home',
-        component: () => import('@/views/Home.vue'),
+        path: '',
+        name: 'DefaultLayout',
+        component: () => import('@/layouts/LayoutDefault.vue'),
+        children: [
+            {
+                path: '',
+                name: 'Home',
+                component: () => import('@/pages/Home.vue'),
+            },
+        ],
     },
 ]
 
