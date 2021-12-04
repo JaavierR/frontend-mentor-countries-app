@@ -33,13 +33,17 @@ const { t } = useI18n()
             v-if="filteredCountries.length"
             class="grid grid-cols-1 gap-10 p-4 px-10 text-lg xl:gap-16 md:px-0 sm:grid-cols-4"
         >
-            <div
+            <RouterLink
                 v-for="country in filteredCountries"
                 :key="country.name.common"
                 class="sm:col-span-2 lg:col-span-1"
+                :to="{
+                    name: 'Country',
+                    params: { countryName: country.name.common.toLowerCase() },
+                }"
             >
                 <AppCard :country="country" />
-            </div>
+            </RouterLink>
         </div>
     </div>
 </template>
