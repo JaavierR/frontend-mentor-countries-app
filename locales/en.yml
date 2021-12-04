@@ -12,6 +12,12 @@ navbar:
     toggle_dark: Toggle dark mode
     toggle_langs: Change languages
 country:
-    population: population
-    region: region
-    capital: capital
+    population: Population
+    region: Region
+    capital: Capital
+    subregion: Sub Region
+    tld: Top Level Domain
+    currencies: Currencies
+    languages: Languages
+    native_name: Native Name
+    border_countries: Border Countries
