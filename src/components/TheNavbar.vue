@@ -5,9 +5,12 @@
         <div class="shadow-md">
             <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="relative flex items-center justify-between h-16">
-                    <div class="text-lg font-extrabold tracking-wide">
+                    <RouterLink
+                        :to="{ name: 'Home' }"
+                        class="text-lg font-extrabold tracking-wide"
+                    >
                         Where in the world?
-                    </div>
+                    </RouterLink>
                     <div class="flex space-x-4">
                         <div class="cursor-pointer hover:text-gray-500">
                             <MoonIcon class="w-5 h-5" />
