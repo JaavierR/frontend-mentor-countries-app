@@ -23,5 +23,16 @@ export const useCountryStore = defineStore('country', {
                     (country: Country) => country.name.common === countryName
                 )
         },
+        filterCountries: (state) => {
+            return (countryName = '') => {
+                if (!countryName) return state.countries
+
+                return state.countries.filter((country: Country) =>
+                    country.name.common
+                        .toLowerCase()
+                        .includes(countryName.toLowerCase())
+                )
+            }
+        },
     },
 })

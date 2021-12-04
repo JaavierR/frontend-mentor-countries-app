@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import { useCountryStore } from '@/stores/country'
 
 const useCountry = useCountryStore()
-const { countries } = storeToRefs(useCountry)
 
 const search = ref('')
+
+const filteredCountries = computed(() =>
+    useCountry.filterCountries(search.value)
+)
 </script>
 
 <template>
@@ -15,11 +17,11 @@ const search = ref('')
         </div>
         <!-- Countries Grid -->
         <div
-            v-if="countries.length"
+            v-if="filteredCountries.length"
             class="grid grid-cols-1 gap-10 p-4 px-10 text-lg xl:gap-16 md:px-0 sm:grid-cols-4"
         >
             <div
-                v-for="country in countries"
+                v-for="country in filteredCountries"
                 :key="country.name.common"
                 class="sm:col-span-2 lg:col-span-1"
             >
