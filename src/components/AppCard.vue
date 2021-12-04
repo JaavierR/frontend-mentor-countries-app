@@ -2,6 +2,8 @@
 import Country from '@/types/Country'
 
 defineProps<{ country: Country }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -25,15 +27,21 @@ defineProps<{ country: Country }>()
                     class="truncate"
                     :title="Intl.NumberFormat('es').format(country.population)"
                 >
-                    <span class="font-semibold">Population:</span>
+                    <span class="font-semibold"
+                        >{{ t('country.population') }}:</span
+                    >
                     {{ Intl.NumberFormat('es').format(country.population) }}
                 </p>
-                <p class="truncate" :title="country.region">
-                    <span class="font-semibold">Region:</span>
-                    {{ country.region }}
+                <p class="truncate" :title="t(`region.${country.region}`)">
+                    <span class="font-semibold"
+                        >{{ t('country.region') }}:</span
+                    >
+                    {{ t(`region.${country.region}`) }}
                 </p>
                 <p class="truncate" :title="country.capital[0]">
-                    <span class="font-semibold">Capital:</span>
+                    <span class="font-semibold"
+                        >{{ t('country.capital') }}:</span
+                    >
                     {{ country.capital[0] }}
                 </p>
             </div>

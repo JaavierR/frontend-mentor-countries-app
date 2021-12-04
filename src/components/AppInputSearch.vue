@@ -21,7 +21,6 @@ export default {
             v-bind="$attrs"
             type="text"
             class="block w-full py-4 text-sm font-semibold text-white placeholder-white border-none rounded-md pl-14 bg-dark-blue sm:text-sm focus:border-white focus:ring-white"
-            placeholder="Search for a country..."
             :value="modelValue"
             @input="$emit('update:modelValue', ($event.target as any)?.value)"
         />

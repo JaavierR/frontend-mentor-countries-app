@@ -4,20 +4,13 @@ import { useCountryStore } from '@/stores/country'
 const useCountry = useCountryStore()
 
 const search = ref('')
-const region = ref('Filter by Region')
+const region = ref('all')
 
 const filteredCountries = computed(() =>
     useCountry.filterCountries(search.value, region.value)
 )
 
-const regionsOption = [
-    'Filter by Region',
-    'Africa',
-    'Americas',
-    'Asia',
-    'Europe',
-    'Oceania',
-]
+const { t } = useI18n()
 </script>
 
 <template>
@@ -25,10 +18,13 @@ const regionsOption = [
         <div
             class="flex flex-col justify-center mb-4 space-y-4 md:space-y-0 md:justify-between md:flex-row"
         >
-            <AppInputSearch v-model="search" class="md:w-96" />
-            <AppSelect
+            <AppInputSearch
+                v-model="search"
+                class="md:w-96"
+                :placeholder="t('country_search')"
+            />
+            <AppRegionSelect
                 v-model="region"
-                :options="regionsOption"
                 class="self-start mx-auto md:mx-0"
             />
         </div>

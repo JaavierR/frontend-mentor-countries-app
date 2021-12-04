@@ -32,10 +32,7 @@ export const useCountryStore = defineStore('country', {
                 ),
         filterCountries(state) {
             return (countryName = '', regionName = ''): Country[] => {
-                if (
-                    !countryName &&
-                    (!regionName || regionName === 'Filter by Region')
-                )
+                if (!countryName && (!regionName || regionName === 'all'))
                     return state.countries
 
                 return state.countries.filter(
@@ -54,7 +51,7 @@ export const useCountryStore = defineStore('country', {
         fitlerByRegion:
             () =>
             (countryRegionArray: string, countryRegion: string): boolean =>
-                countryRegion !== 'Filter by Region'
+                countryRegion !== 'all'
                     ? countryRegionArray.toLowerCase() ===
                       countryRegion.toLowerCase()
                     : true,

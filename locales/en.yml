@@ -1,4 +1,17 @@
+country_search: Search for a country...
+region_filter: Filter by Region
+region:
+    Africa: Africa
+    Americas: Americas
+    Asia: Asia
+    Europe: Europe
+    Oceania: Oceania
+    Antarctic: Antarctic
 navbar:
     title: Where in the world?
     toggle_dark: Toggle dark mode
     toggle_langs: Change languages
+country:
+    population: population
+    region: region
+    capital: capital
