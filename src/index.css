@@ -22,4 +22,12 @@
         margin: 0;
         padding: 0;
     }
+
+    body {
+        height: calc(100% - 64px);
+    }
+
+    #app {
+        height: 100%;
+    }
 }
