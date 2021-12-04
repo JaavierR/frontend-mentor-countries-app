@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { FlagIcon } from '@heroicons/vue/solid'
+const { t } = useI18n()
 </script>
 
 <template>
@@ -12,14 +13,14 @@ import { FlagIcon } from '@heroicons/vue/solid'
             <h1
                 class="text-3xl font-extrabold tracking-tight text-red-700 uppercase"
             >
-                The resource not exists
+                {{ t('not_found.resource') }}
             </h1>
             <RouterLink
                 :to="{ name: 'Home' }"
                 class="inline-flex items-center px-8 py-2 my-4 mb-10 rounded-sm shadow-md md:mb-6 bg-dark-blue hover:bg-white hover:bg-opacity-50"
             >
                 <FlagIcon class="w-5 h-5 mr-2" />
-                Back to home
+                {{ t('back_to_home') }}
             </RouterLink>
         </div>
     </div>

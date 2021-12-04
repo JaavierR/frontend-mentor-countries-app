@@ -21,3 +21,7 @@ country:
     languages: Languages
     native_name: Native Name
     border_countries: Border Countries
+not_found:
+    resource: The resource not exists
+back: Back
+back_to_home: Back to home

@@ -21,3 +21,7 @@ country:
     currencies: Monedas
     languages: Idiomas
     border_countries: Países fronterizos
+not_found:
+    resource: El recurso no existe
+back: Atrás
+back_to_home: Volver al inicio
