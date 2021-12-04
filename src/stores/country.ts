@@ -17,22 +17,40 @@ export const useCountryStore = defineStore('country', {
         },
     },
     getters: {
-        getCountryById: (state) => {
-            return (countryName: string) =>
+        getCountryByName:
+            (state) =>
+            (countryName: string): Country | undefined =>
                 state.countries.find(
-                    (country: Country) => country.name.common === countryName
+                    (country: Country): boolean =>
+                        country.name.common === countryName
+                ),
+        filterCountries(state) {
+            return (countryName = '', regionName = ''): Country[] => {
+                if (
+                    !countryName &&
+                    (!regionName || regionName === 'Filter by Region')
                 )
-        },
-        filterCountries: (state) => {
-            return (countryName = '') => {
-                if (!countryName) return state.countries
+                    return state.countries
 
-                return state.countries.filter((country: Country) =>
-                    country.name.common
-                        .toLowerCase()
-                        .includes(countryName.toLowerCase())
+                return state.countries.filter(
+                    (country: Country): boolean =>
+                        this.filterByName(country.name.common, countryName) &&
+                        this.fitlerByRegion(country.region, regionName)
                 )
             }
         },
+        filterByName:
+            () =>
+            (countryNameArray: string, countryName: string): boolean =>
+                countryNameArray
+                    .toLowerCase()
+                    .includes(countryName.toLowerCase()),
+        fitlerByRegion:
+            () =>
+            (countryRegionArray: string, countryRegion: string): boolean =>
+                countryRegion !== 'Filter by Region'
+                    ? countryRegionArray.toLowerCase() ===
+                      countryRegion.toLowerCase()
+                    : true,
     },
 })
