@@ -33,9 +33,14 @@ const routes: Array<RouteRecordRaw> = [
                 async beforeEnter(to) {
                     try {
                         const country = useCountryStore()
-                        await country.fetchCountry(
-                            to.params.countryName as string
-                        )
+                        if (!country.countries.length) {
+                            await country.fetchCountry(
+                                to.params.countryName as string
+                            )
+                            await country.fetchCountriesByCode(
+                                country.getBorderCodes
+                            )
+                        }
                     } catch (error) {}
                 },
             },

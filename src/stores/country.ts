@@ -9,7 +9,7 @@ interface State {
 
 export const useCountryStore = defineStore('country', {
     state: (): State => ({
-        countries: <Country[]>[],
+        countries: [],
         country: <Country>{},
     }),
     actions: {
@@ -19,7 +19,11 @@ export const useCountryStore = defineStore('country', {
         },
         async fetchCountry(countryName: string): Promise<void> {
             const { data } = await apiCountry.fetchCountry(countryName)
-            this.country = data
+            this.country = data[0]
+        },
+        async fetchCountriesByCode(codes: string): Promise<void> {
+            const { data } = await apiCountry.fetchCountriesByCode(codes)
+            this.countries = data
         },
     },
     getters: {
@@ -30,6 +34,12 @@ export const useCountryStore = defineStore('country', {
                     (country: Country): boolean =>
                         country.name.common === countryName
                 ),
+        getCountryNameByFifa:
+            (state) =>
+            (code: string): string | undefined =>
+                state.countries.find(
+                    (country: Country): boolean => country.cca3 === code
+                )?.name.common,
         filterCountries(state) {
             return (countryName = '', regionName = ''): Country[] => {
                 if (!countryName && (!regionName || regionName === 'all'))
@@ -42,6 +52,7 @@ export const useCountryStore = defineStore('country', {
                 )
             }
         },
+        getBorderCodes: (state) => state.country.borders?.join(','),
         filterByName:
             () =>
             (countryNameArray: string, countryName: string): boolean =>

@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AppCard: typeof import('./components/AppCard.vue')['default']
+    AppCountryFieldInfo: typeof import('./components/AppCountryFieldInfo.vue')['default']
     AppInputSearch: typeof import('./components/AppInputSearch.vue')['default']
     AppRegionSelect: typeof import('./components/AppRegionSelect.vue')['default']
     AppSelect: typeof import('./components/AppSelect.vue')['default']

@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios'
 import { apiClient } from '@/services/Axios'
 
 const fields =
-    'fields=name,capital,region,subregion,population,flags,borders,languages,currencies,topLevelDomain'
+    'fields=name,capital,region,subregion,population,flags,borders,languages,currencies,tld,cca3'
 
 export default {
     fetchCountries: async (): Promise<AxiosResponse> => {
@@ -13,5 +13,8 @@ export default {
         return await apiClient.get(
             `/name/${countryName}?fullText=true&${fields}`
         )
+    },
+    fetchCountriesByCode: async (codes: string): Promise<AxiosResponse> => {
+        return await apiClient(`/alpha?codes=${codes}&fields=name,cca3`)
     },
 }
