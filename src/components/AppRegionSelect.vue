@@ -1,11 +1,10 @@
 <script setup lang="ts">
-interface Option {
-    value: number | string
-    name: string
-}
-
-defineProps<{ modelValue: string | number; options: Option[] }>()
+defineProps<{ modelValue: string | number }>()
 defineEmits<{ (e: 'update:modelValue', change: string | number): void }>()
+
+const { t } = useI18n()
+
+const options = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania', 'Antarctic']
 </script>
 
 <template>
@@ -21,13 +20,14 @@ defineEmits<{ (e: 'update:modelValue', change: string | number): void }>()
         class="block py-4 text-sm font-semibold text-white placeholder-white border-none rounded-md shadow-md bg-dark-blue sm:text-sm focus:ring-white focus:border-white"
         :value="modelValue"
     >
+        <option value="all">{{ t('region_filter') }}</option>
         <option
             v-for="option in options"
-            :key="option.value"
-            :value="option.value"
-            :selected="option.value === modelValue"
+            :key="option"
+            :value="option"
+            :selected="option === modelValue"
         >
-            {{ option.name }}
+            {{ t(`region.${option}`) }}
         </option>
     </select>
 </template>
