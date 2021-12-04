@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import Country from '@/types/Country'
+import { numberToI18n } from '@/helpers'
 
 defineProps<{ country: Country }>()
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 </script>
 
 <template>
@@ -25,23 +26,23 @@ const { t } = useI18n()
             <div class="mb-6 space-y-2 text-sm font-light">
                 <p
                     class="truncate"
-                    :title="Intl.NumberFormat('es').format(country.population)"
+                    :title="numberToI18n(country.population, locale)"
                 >
-                    <span class="font-semibold"
-                        >{{ t('country.population') }}:</span
-                    >
-                    {{ Intl.NumberFormat('es').format(country.population) }}
+                    <span class="font-semibold">
+                        {{ t('country.population') }}:
+                    </span>
+                    {{ numberToI18n(country.population, locale) }}
                 </p>
                 <p class="truncate" :title="t(`region.${country.region}`)">
-                    <span class="font-semibold"
-                        >{{ t('country.region') }}:</span
-                    >
+                    <span class="font-semibold">
+                        {{ t('country.region') }}:
+                    </span>
                     {{ t(`region.${country.region}`) }}
                 </p>
                 <p class="truncate" :title="country.capital[0]">
-                    <span class="font-semibold"
-                        >{{ t('country.capital') }}:</span
-                    >
+                    <span class="font-semibold">
+                        {{ t('country.capital') }}:
+                    </span>
                     {{ country.capital[0] }}
                 </p>
             </div>
