@@ -9,4 +9,9 @@ export default {
     fetchCountries: async (): Promise<AxiosResponse> => {
         return await apiClient.get(`/all?${fields}`)
     },
+    fetchCountry: async (countryName: string): Promise<AxiosResponse> => {
+        return await apiClient.get(
+            `/name/${countryName}?fullText=true&${fields}`
+        )
+    },
 }

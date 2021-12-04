@@ -25,6 +25,20 @@ const routes: Array<RouteRecordRaw> = [
                     } catch (error) {}
                 },
             },
+            {
+                path: '/:countryName',
+                name: 'Country',
+                props: true,
+                component: () => import('@/pages/Country.vue'),
+                async beforeEnter(to) {
+                    try {
+                        const country = useCountryStore()
+                        await country.fetchCountry(
+                            to.params.countryName as string
+                        )
+                    } catch (error) {}
+                },
+            },
         ],
     },
 ]

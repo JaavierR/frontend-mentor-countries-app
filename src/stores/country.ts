@@ -4,16 +4,22 @@ import Country from '@/types/Country'
 
 interface State {
     countries: Country[]
+    country: Country
 }
 
 export const useCountryStore = defineStore('country', {
     state: (): State => ({
-        countries: [],
+        countries: <Country[]>[],
+        country: <Country>{},
     }),
     actions: {
         async fetchCountries(): Promise<void> {
             const { data } = await apiCountry.fetchCountries()
             this.countries = data
+        },
+        async fetchCountry(countryName: string): Promise<void> {
+            const { data } = await apiCountry.fetchCountry(countryName)
+            this.country = data
         },
     },
     getters: {
