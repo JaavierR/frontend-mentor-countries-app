@@ -1,15 +1,34 @@
 <script setup lang="ts">
+import { ArrowNarrowLeftIcon } from '@heroicons/vue/solid'
 import { storeToRefs } from 'pinia'
+import { onBeforeRouteUpdate } from 'vue-router'
 import { useCountryStore } from '@/stores/country'
 import { numberToI18n } from '@/helpers'
 
 const useCountry = useCountryStore()
+const loading = ref(false)
 const { country } = storeToRefs(useCountry)
 const { t, locale } = useI18n()
+
+onBeforeRouteUpdate(async (to) => {
+    loading.value = true
+    await useCountry.fetchCountry(to.params.countryName as string)
+    if (useCountry.countries.length < 100) {
+        await useCountry.fetchCountriesByCode(useCountry.getBorderCodes)
+    }
+    loading.value = false
+})
 </script>
 
 <template>
-    <div class="px-8 py-8 mx-auto max-w-7xl">
+    <div v-if="!loading" class="px-8 py-8 mx-auto max-w-7xl">
+        <router-link
+            :to="{ name: 'Home' }"
+            class="inline-flex items-center px-8 py-2 my-4 mb-10 rounded-sm shadow-md md:mb-6 bg-dark-blue hover:bg-white hover:bg-opacity-50"
+        >
+            <ArrowNarrowLeftIcon class="w-5 h-5 mr-2" />
+            Back
+        </router-link>
         <div
             class="grid grid-cols-1 capitalize md:grid-cols-2 gap-x-12 xl:gap-x-32"
         >
@@ -30,7 +49,8 @@ const { t, locale } = useI18n()
                         <AppCountryFieldInfo
                             :title="t('country.native_name')"
                             :info="
-                                Object.values(country.name.nativeName)[0].common
+                                Object.values(country.name.nativeName)[0]
+                                    ?.common
                             "
                         />
                         <AppCountryFieldInfo
@@ -79,23 +99,26 @@ const { t, locale } = useI18n()
                     </span>
                     <div class="grid grid-cols-3 col-span-6 gap-3 md:gap-2">
                         <template
-                            v-for="border in country.borders"
-                            :key="border"
+                            v-for="borderCode in country.borders"
+                            :key="borderCode"
                         >
                             <RouterLink
                                 :to="{
                                     name: 'Country',
                                     params: {
-                                        countryName:
-                                            useCountry.getCountryNameByFifa(
-                                                border
-                                            ),
+                                        countryName: useCountry
+                                            .getCountryNamesByCode(borderCode)
+                                            .toLowerCase(),
                                     },
                                 }"
                                 class="inline-block py-1.5 text-center rounded-sm shadow-md bg-dark-blue hover:bg-white hover:bg-opacity-50 px-2 truncate"
-                                :title="useCountry.getCountryNameByFifa(border)"
+                                :title="
+                                    useCountry.getCountryNamesByCode(borderCode)
+                                "
                             >
-                                {{ useCountry.getCountryNameByFifa(border) }}
+                                {{
+                                    useCountry.getCountryNamesByCode(borderCode)
+                                }}
                             </RouterLink>
                         </template>
                     </div>

@@ -15,6 +15,6 @@ export default {
         )
     },
     fetchCountriesByCode: async (codes: string): Promise<AxiosResponse> => {
-        return await apiClient(`/alpha?codes=${codes}&fields=name,cca3`)
+        return await apiClient(`/alpha?codes=${codes}&${fields}`)
     },
 }
