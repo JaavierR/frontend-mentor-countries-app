@@ -24,7 +24,7 @@ const { t, locale } = useI18n()
                     {{ country.name.common }}
                 </h1>
                 <div
-                    class="grid grid-cols-1 space-y-12 sm:space-y-0 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 md:space-y-12 lg:space-y-0"
+                    class="grid grid-cols-1 space-y-12 sm:space-y-0 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 md:space-y-12 lg:space-y-0 xl:gap-x-12"
                 >
                     <div class="space-y-2">
                         <AppCountryFieldInfo
