@@ -20,12 +20,12 @@ const { t, locale } = useI18n()
         </div>
         <div class="p-6 capitalize">
             <h4
-                class="mb-4 font-extrabold truncate"
+                class="mb-4 text-2xl font-extrabold truncate lg:text-lg"
                 :title="country.name.common"
             >
                 {{ country.name.common }}
             </h4>
-            <div class="mb-6 space-y-2 text-sm font-light">
+            <div class="mb-6 space-y-2 text-base font-light lg:text-sm">
                 <p
                     class="truncate"
                     :title="numberToI18n(country.population, locale)"
