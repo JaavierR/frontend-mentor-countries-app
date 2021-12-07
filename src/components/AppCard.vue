@@ -8,7 +8,9 @@ const { t, locale } = useI18n()
 </script>
 
 <template>
-    <div class="block overflow-hidden rounded-md shadow-md bg-dark-blue">
+    <div
+        class="block overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-blue"
+    >
         <div class="relative pb-[56%]">
             <img
                 :src="country.flags.svg"

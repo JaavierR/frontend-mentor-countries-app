@@ -17,10 +17,17 @@
     html,
     body,
     #app {
-        @apply text-white bg-very-dark-blue;
         height: 100%;
         margin: 0;
         padding: 0;
+    }
+
+    html {
+        @apply text-dark-blue-text bg-very-light-gray;
+    }
+
+    html.dark {
+        @apply text-white bg-very-dark-blue;
     }
 
     body {

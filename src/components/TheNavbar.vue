@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { MoonIcon, TranslateIcon } from '@heroicons/vue/solid'
+import { MoonIcon, TranslateIcon, SunIcon } from '@heroicons/vue/solid'
+import { isDark, toggleDark } from '@/composables/dark'
 const { t, availableLocales, locale } = useI18n()
 
 const toggleLocales = () => {
@@ -10,7 +11,7 @@ const toggleLocales = () => {
 
 <template>
     <div
-        class="fixed top-0 z-50 w-full bg-opacity-75 shadow-md bg-dark-blue backdrop-filter backdrop-blur-md"
+        class="fixed top-0 z-50 w-full bg-white bg-opacity-75 shadow-md dark:bg-dark-blue backdrop-filter backdrop-blur-md"
     >
         <div class="shadow-md">
             <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -25,8 +26,12 @@ const toggleLocales = () => {
                         <div
                             :title="t('navbar.toggle_dark')"
                             class="cursor-pointer hover:text-teal-500"
+                            @click="toggleDark()"
                         >
-                            <MoonIcon class="w-5 h-5" />
+                            <Component
+                                :is="isDark ? MoonIcon : SunIcon"
+                                class="w-5 h-5"
+                            />
                         </div>
                         <div
                             class="cursor-pointer hover:text-teal-500"

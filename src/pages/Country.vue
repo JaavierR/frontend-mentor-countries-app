@@ -24,7 +24,7 @@ onBeforeRouteUpdate(async (to) => {
     <div v-if="!loading" class="px-8 py-8 mx-auto max-w-7xl">
         <router-link
             :to="{ name: 'Home' }"
-            class="inline-flex items-center px-8 py-2 my-4 mb-10 rounded-sm shadow-md md:mb-6 bg-dark-blue hover:bg-white hover:bg-opacity-50"
+            class="inline-flex items-center px-8 py-2 my-4 mb-10 rounded-sm shadow-md md:mb-6 hover:bg-dark-gray dark:bg-dark-blue dark:hover:bg-opacity-50 dark:hover:bg-white hover:bg-opacity-50"
         >
             <ArrowNarrowLeftIcon class="w-5 h-5 mr-2" />
             {{ t('back') }}
@@ -111,7 +111,7 @@ onBeforeRouteUpdate(async (to) => {
                                             .toLowerCase(),
                                     },
                                 }"
-                                class="inline-block py-1.5 text-center rounded-sm shadow-md bg-dark-blue hover:bg-white hover:bg-opacity-50 px-2 truncate"
+                                class="inline-block py-1.5 text-center rounded-sm shadow-md hover:bg-dark-gray dark:bg-dark-blue dark:hover:bg-white hover:bg-opacity-50 dark:hover:bg-opacity-50 px-2 truncate"
                                 :title="
                                     useCountry.getCountryNamesByCode(borderCode)
                                 "

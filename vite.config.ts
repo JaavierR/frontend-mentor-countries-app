@@ -19,7 +19,7 @@ export default defineConfig({
         eslintPlugin(),
 
         AutoImport({
-            imports: ['vue', 'vue-router', 'vue-i18n'],
+            imports: ['vue', 'vue-router', 'vue-i18n', '@vueuse/core'],
             dts: 'src/auto-imports.d.ts',
         }),
 
@@ -44,7 +44,7 @@ export default defineConfig({
     },
 
     optimizeDeps: {
-        include: ['vue', 'vue-router'],
+        include: ['vue', 'vue-router', '@vueuse/core'],
         exclude: ['vue-demi'],
     },
 })

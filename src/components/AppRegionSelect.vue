@@ -17,7 +17,7 @@ const options = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania', 'Antarctic']
         }"
         id="filterByRegion"
         name="filterByRegion"
-        class="block py-4 text-sm font-semibold text-white placeholder-white border-none rounded-md shadow-md bg-dark-blue sm:text-sm focus:ring-white focus:border-white"
+        class="block py-4 text-sm font-semibold border-none rounded-md shadow-md dark:placeholder-white dark:bg-dark-blue sm:text-sm focus:border-dark-blue focus:ring-dark-blue dark:focus:border-white dark:focus:ring-white"
         :value="modelValue"
     >
         <option value="all">{{ t('region_filter') }}</option>
