@@ -19,11 +19,21 @@ const routes: Array<RouteRecordRaw> = [
                 path: '',
                 name: 'Home',
                 component: () => import('@/pages/Home.vue'),
-                async beforeEnter() {
+                async beforeEnter(to) {
                     try {
                         const country = useCountryStore()
-                        await country.fetchCountries()
-                    } catch (error) {}
+                        if (country.countries.length < 100) {
+                            await country.fetchCountries()
+                        }
+                    } catch (error: unknown) {
+                        const e: AxiosResponse = error as AxiosResponse
+                        if (e.status === 404) {
+                            return {
+                                name: 'NotFound',
+                                query: { redirect: to.fullPath },
+                            }
+                        }
+                    }
                 },
             },
             {
